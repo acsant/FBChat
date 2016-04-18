@@ -51,7 +51,9 @@ var app = express()
   // calories endpiint
   function findFoodWithCaloriesLessThan (calories, sender) {
     openapi.foodservicesSearch({}, {'calories.lt': calories}).then(function(foods) {
+      var start = Date.now()
       var foodsObj = JSON.parse(foods)
+      console.log('Time taken: ', Date.now() - start)
       for (var food in foodsObj) {
         /*var foodInfo = "\nFood: " + food.product_name
                       + "\nCalories: " + food['calories'] + 
