@@ -48,9 +48,9 @@ var app = express()
       text:text
     }
     request({
-      url: 'https://graph.facebook.com/v2.6/me/messages'
-      qs: {access_token:token}
-      method: 'POST'
+      url: 'https://graph.facebook.com/v2.6/me/messages',
+      qs: {access_token:token},
+      method: 'POST',
       json: {
         recipient: {id: sender},
         message: messageData,
