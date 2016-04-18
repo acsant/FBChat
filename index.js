@@ -54,7 +54,7 @@ var app = express()
       var len = foods.length
       for (var i = 0; i < len; i++) {
         var foodInfo = "\nFood: " + JSON.stringify(foods[i].product_name)
-                      + "\nCalories: " + JSON.stringify(foods[i].calories) + 
+                      + "\nCalories: " + JSON.stringify(foods[i].calories)
                       + "\nType: " + JSON.stringify(food[i].diet_type)
         console.log('Found results for: ', foodsInfo)
         //sendTextMessage(sender, "AkashBot suggests: " + foodInfo)
