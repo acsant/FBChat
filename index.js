@@ -49,11 +49,11 @@ var app = express()
         if (match) {
           sendTextMessage(sender, "AkashBot suggests: ");
           if (EQ) {
-            findFoodWithCaloriesLessThan(match, sender, EQ)
+            findFoodWithCaloriesLessThan(match, sender, EQ);
           } else if (GT) {
-            findFoodWithCaloriesLessThan(match, sender, GT)
+            findFoodWithCaloriesLessThan(match, sender, GT);
           } else {
-            findFoodWithCaloriesLessThan(match, sender, LT)
+            findFoodWithCaloriesLessThan(match, sender, LT);
           }
           //sendTextMessage(sender, "Text received, echo: " + match)
         }
@@ -64,7 +64,7 @@ var app = express()
 
   // calories endpiint
   function findFoodWithCaloriesLessThan (calories, sender, oper) {
-    var param = '';
+    var param = ''
     if (oper[0] == 'equal') {
       param = {'calories.eq': calories}
     } else if (oper[0] == 'greater') {
