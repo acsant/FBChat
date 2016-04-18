@@ -40,8 +40,8 @@ var app = express()
         text = event.message.text
         var match = text.match(/\d+/)
         if (match) {
-          findFoodWithCaloriesLessThan(match)
-          sendTextMessage(sender, "Text received, echo: " + match)
+          findFoodWithCaloriesLessThan(match, sender)
+          //sendTextMessage(sender, "Text received, echo: " + match)
         }
       }
     }
@@ -49,9 +49,16 @@ var app = express()
   })
 
   // calories endpiint
-  function findFoodWithCaloriesLessThan (calories) {
+  function findFoodWithCaloriesLessThan (calories, sender) {
     openapi.foodservicesSearch({}, {'calories.lt': calories}).then(function(foods) {
       console.log('Found results for test food: ', foods)
+      for (var food in foods) {
+        var foodInfo = 'Food: ' + food.product_name 
+                      + '\nCalories: ' + food.calories + 
+                      + '\nType: ' + food.diet_type
+       
+        sendTextMessage(sender, "Akash suggests: " + foodInfo)
+      }
     }, function (err) {
       console.log('Error: ', err)
     })
