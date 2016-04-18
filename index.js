@@ -64,8 +64,9 @@ var app = express()
         } else if (response.body.error) {
           console.log('Error', response.body.error)
         }
-    }
-  })
+      }
+    })
+  }
 
   function sendGenericMessage(sender) {
     messageData = {
