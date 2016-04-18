@@ -51,7 +51,7 @@ var app = express()
 
   // calories endpiint
   function findFoodWithCaloriesLessThan (calories, sender) {
-    openapi.foodservicesSearch({}, {'calories.eq': calories}).then(function(foods) {
+    openapi.foodservicesSearch({}, {'calories.lt': calories}).then(function(foods) {
       var len = foods.length
       if (len > 10)
         len = 10
