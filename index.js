@@ -7,6 +7,10 @@ var app = express()
 
   app.use(bodyParser.urlencoded({extended: false}))
   app.use(bodyParser.json())
+  
+  var token = "CAACZClHELlZCIBAJZB9gT66Ca9TP6h4BuOWdp4frFeI4sQMJIqqXMNoeMLli2GNXO5GQGKRcFzZB3G9132hHdJgpKLWgX8JjR9O2kcauuHaXd5ncJBKhEtLEnsBOSxl2usYoIyFiRgazKEx3hXEQbfvN7bcSkAea2jycN9RNuX3lLSU96pXqO2X8ZAT2g4mAZD"
+  var apikey = "43073ca8eccde3bb5744d4df7cc9dec3"
+  var openapi = require('uwapi')(apikey)
 
   //Index Route
   app.get('/', function (req, res) {
@@ -36,15 +40,22 @@ var app = express()
         text = event.message.text
         var match = text.match(/\d+/)
         if (match) {
+          findFoodWithCaloriesLessThan(match)
           sendTextMessage(sender, "Text received, echo: " + match)
-      
         }
       }
     }
     res.sendStatus(200)
   })
 
-  var token = "CAACZClHELlZCIBAJZB9gT66Ca9TP6h4BuOWdp4frFeI4sQMJIqqXMNoeMLli2GNXO5GQGKRcFzZB3G9132hHdJgpKLWgX8JjR9O2kcauuHaXd5ncJBKhEtLEnsBOSxl2usYoIyFiRgazKEx3hXEQbfvN7bcSkAea2jycN9RNuX3lLSU96pXqO2X8ZAT2g4mAZD"
+  // calories endpiint
+  function findFoodWithCaloriesLessThan (calories) {
+    uwapi.foodservicessearch({}, {'calories.lt': calories}).then(function(foods) {
+      console.log('Found results for test food: ', foods)
+    }, function (err) {
+      console.log('Error: ', err)
+    })
+  }
 
   //Echo message function
   function sendTextMessage (sender, text) {
