@@ -53,11 +53,11 @@ var app = express()
     openapi.foodservicesSearch({}, {'calories.lt': calories}).then(function(foods) {
       var len = foods.length
       for (var i = 0; i < len; i++) {
-        /*var foodInfo = "\nFood: " + food.product_name
-                      + "\nCalories: " + food['calories'] + 
-                      + "\nType: " + food['diet_type']*/
+        var foodInfo = "\nFood: " + foods[i].product_name
+                      + "\nCalories: " + foods[i].calories + 
+                      + "\nType: " + food[i].diet_type
         console.log('Found results for: ', foods[i])
-        //sendTextMessage(sender, "Akash suggests: " + foodInfo)
+        sendTextMessage(sender, "AkashBot suggests: " + foodInfo)
       }
     }, function (err) {
       console.log('Error: ', err)
