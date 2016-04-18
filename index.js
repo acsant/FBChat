@@ -55,7 +55,7 @@ var app = express()
         /*var foodInfo = "\nFood: " + food.product_name
                       + "\nCalories: " + food['calories'] + 
                       + "\nType: " + food['diet_type']*/
-        console.log('Found results for: ', food)
+        console.log('Found results for: ', JSON.parse(food))
         //sendTextMessage(sender, "Akash suggests: " + foodInfo)
       }
     }, function (err) {
