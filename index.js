@@ -11,6 +11,9 @@ var app = express()
   var token = "CAACZClHELlZCIBAJZB9gT66Ca9TP6h4BuOWdp4frFeI4sQMJIqqXMNoeMLli2GNXO5GQGKRcFzZB3G9132hHdJgpKLWgX8JjR9O2kcauuHaXd5ncJBKhEtLEnsBOSxl2usYoIyFiRgazKEx3hXEQbfvN7bcSkAea2jycN9RNuX3lLSU96pXqO2X8ZAT2g4mAZD"
   var apikey = "43073ca8eccde3bb5744d4df7cc9dec3"
   var openapi = require('uwapi')(apikey)
+  var matchGT = (?:^|\s)(greater)(?=\s|)
+  var matchLT = (?:^|\s)(less)(?=\s|)
+  var matchEQ = (?:^|\s)(equal)(?=\s|)
 
   //Index Route
   app.get('/', function (req, res) {
@@ -39,9 +42,18 @@ var app = express()
       if (event.message && event.message.text) {
         text = event.message.text
         var match = text.match(/\d+/)
+        var GT = text.match(matchGT)
+        var LT = text.match(matchLT)
+        var EQ = text.match(matchEQ)
         if (match) {
           sendTextMessage(sender, "AkashBot suggests: ")
-          findFoodWithCaloriesLessThan(match, sender)
+          if (EQ) {
+            findFoodWithCaloriesLessThan(match, sender, EQ)
+          } else if (GT) {
+            findFoodWithCaloriesLessThan(match, sender, GT)
+          } else {
+            findFoodWithCaloriesLessThan(match, sender, LT)
+          }
           //sendTextMessage(sender, "Text received, echo: " + match)
         }
       }
@@ -50,8 +62,16 @@ var app = express()
   })
 
   // calories endpiint
-  function findFoodWithCaloriesLessThan (calories, sender) {
-    openapi.foodservicesSearch({}, {'calories.lt': calories}).then(function(foods) {
+  function findFoodWithCaloriesLessThan (calories, sender, oper) {
+    var param = ''
+    if (oper == 'equal') {
+      param = 'calories.eq'
+    } else if (oper == 'greater') {
+      param = 'calories.gt'
+    } else {
+      param = 'calories.lt'
+    }
+    openapi.foodservicesSearch({}, {param: calories}).then(function(foods) {
       var len = foods.length
       if (len > 10)
         len = 10
