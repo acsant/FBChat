@@ -53,9 +53,9 @@ var app = express()
     openapi.foodservicesSearch({}, {'calories.lt': calories}).then(function(foods) {
       console.log('Found results for test food: ', foods)
       for (var food in foods) {
-        var foodInfo = 'Food: ' + food.product_name 
-                      + '\nCalories: ' + food.calories + 
-                      + '\nType: ' + food.diet_type
+        var foodInfo = 'Food: ' + food['product_name']
+                      + '\nCalories: ' + food['calories'] + 
+                      + '\nType: ' + food['diet_type']
        
         sendTextMessage(sender, "Akash suggests: " + foodInfo)
       }
