@@ -56,7 +56,7 @@ var app = express()
         var foodInfo = "\nFood: " + foods[i].product_name
                       + "\nCalories: " + foods[i].calories
                       + "\nType: " + food[i].diet_type;
-        console.log('Found results for: ', foodsInfo)
+        console.log('Found results for: ', foodInfo)
         //sendTextMessage(sender, "AkashBot suggests: " + foodInfo)
       }
     }, function (err) {
