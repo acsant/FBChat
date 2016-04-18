@@ -14,7 +14,7 @@ var app = express()
   })
 
   // Facebook verficication
-  app.get('/webhook', function (req, res) {
+  app.get('/webhook/', function (req, res) {
     if (req.query['hub.verify_token'] === 'my_voice_is_my_password_verify_me') {
       res.send(req.query['hub.challenge'])
     }
@@ -48,7 +48,7 @@ var app = express()
       text:text
     }
     request({
-      url: 'https://graph.facebook.com/v2.6/me/AkashBot'
+      url: 'https://graph.facebook.com/v2.6/me/messages'
       qs: {access_token:token}
       method: 'POST'
       json: {
