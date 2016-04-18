@@ -34,10 +34,10 @@ var app = express()
       sender = event.sender.id
       if (event.message && event.message.text) {
         text = event.message.text
-        /*if (text == 'Test Generic') {
+        if (text == 'Test Generic') {
           sendGenericMessage(sender)
           continue
-        }*/
+        }
         sendTextMessage(sender, "Text received, echo: " + text.substring(0, 200))
       }
     }
