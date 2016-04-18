@@ -59,7 +59,6 @@ var app = express()
         var foodInfo = "\nFood: " + JSON.stringify(foods[i].product_name)
                       + "\nCalories: " + JSON.stringify(foods[i].calories)
                       + "\nType: " + JSON.stringify(foods[i].diet_type);
-        console.log('Found results for: ', foodInfo)
         sendTextMessage(sender, foodInfo)
       }
     }, function (err) {
