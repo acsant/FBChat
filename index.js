@@ -86,7 +86,7 @@ var app = express()
       }
     }, function (err) {
       console.log('Error: ', err)
-    })
+    }).end()
   }
 
   //Echo message function
