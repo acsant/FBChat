@@ -64,14 +64,14 @@ var app = express()
 
   // calories endpiint
   function findFoodWithCaloriesLessThan (calories, sender, oper) {
-    var param = ''
+    var param = '';
     if (oper[0] == 'equal') {
-      param = {'calories.eq': calories}
+      param = {'calories.eq': calories};
     } else if (oper[0] == 'greater') {
       console.log('reached')
-      param = {'calories.gt': calories}
+      param = {'calories.gt': calories};
     } else {
-      param = {'calories.lt': calories}
+      param = {'calories.lt': calories};
     }
     openapi.foodservicesSearch({}, param).then(function(foods) {
       var len = foods.length
@@ -86,7 +86,7 @@ var app = express()
       }
     }, function (err) {
       console.log('Error: ', err)
-    }).end()
+    });
   }
 
   //Echo message function
