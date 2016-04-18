@@ -45,7 +45,7 @@ var app = express()
         var GT = text.match(matchGT)
         var LT = text.match(matchLT)
         var EQ = text.match(matchEQ)
-        console.log('Oper', LT)
+        console.log('Oper', LT[0])
         console.log('Oper', EQ)
         if (match) {
           sendTextMessage(sender, "AkashBot suggests: ")
@@ -66,9 +66,9 @@ var app = express()
   // calories endpiint
   function findFoodWithCaloriesLessThan (calories, sender, oper) {
     var param = ''
-    if (oper == 'equal') {
+    if (oper[0] == 'equal') {
       param = 'calories.eq'
-    } else if (oper == 'greater') {
+    } else if (oper[0] == 'greater') {
       param = 'calories.gt'
     } else {
       param = 'calories.lt'
