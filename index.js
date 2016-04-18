@@ -11,9 +11,9 @@ var app = express()
   var token = "CAACZClHELlZCIBAJZB9gT66Ca9TP6h4BuOWdp4frFeI4sQMJIqqXMNoeMLli2GNXO5GQGKRcFzZB3G9132hHdJgpKLWgX8JjR9O2kcauuHaXd5ncJBKhEtLEnsBOSxl2usYoIyFiRgazKEx3hXEQbfvN7bcSkAea2jycN9RNuX3lLSU96pXqO2X8ZAT2g4mAZD"
   var apikey = "43073ca8eccde3bb5744d4df7cc9dec3"
   var openapi = require('uwapi')(apikey)
-  var matchGT = (^|\s)(greater)(\s|)
-  var matchLT = (^|\s)(less)(\s|)
-  var matchEQ = (^|\s)(equal)(\s|)
+  var matchGT = /(^|\s)(greater)(\s|)
+  var matchLT = /(^|\s)(less)(\s|)
+  var matchEQ = /(^|\s)(equal)(\s|)
 
   //Index Route
   app.get('/', function (req, res) {
