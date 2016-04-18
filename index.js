@@ -11,9 +11,9 @@ var app = express()
   var token = "CAACZClHELlZCIBAJZB9gT66Ca9TP6h4BuOWdp4frFeI4sQMJIqqXMNoeMLli2GNXO5GQGKRcFzZB3G9132hHdJgpKLWgX8JjR9O2kcauuHaXd5ncJBKhEtLEnsBOSxl2usYoIyFiRgazKEx3hXEQbfvN7bcSkAea2jycN9RNuX3lLSU96pXqO2X8ZAT2g4mAZD"
   var apikey = "43073ca8eccde3bb5744d4df7cc9dec3"
   var openapi = require('uwapi')(apikey)
-  var matchGT = /(?:^|\s)(greater)(?=\s|)/
-  var matchLT = /(?:^|\s)(less)(?=\s|)/
-  var matchEQ = /(?:^|\s)(equal)(?=\s|)/
+  var matchGT = /(?:^|\s)(greater|more)(?=\s|)/
+  var matchLT = /(?:^|\s)(less|smaller)(?=\s|)/
+  var matchEQ = /(?:^|\s)(equal|same)(?=\s|)/
 
   //Index Route
   app.get('/', function (req, res) {
@@ -45,6 +45,7 @@ var app = express()
         var GT = text.match(matchGT)
         var LT = text.match(matchLT)
         var EQ = text.match(matchEQ)
+        console.log(GT)
         if (match) {
           sendTextMessage(sender, "AkashBot suggests: ")
           if (EQ) {
@@ -67,6 +68,7 @@ var app = express()
     if (oper[0] == 'equal') {
       param = {'calories.eq': calories}
     } else if (oper[0] == 'greater') {
+      console.log('reached')
       param = {'calories.gt': calories}
     } else {
       param = {'calories.lt': calories}
