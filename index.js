@@ -40,6 +40,7 @@ var app = express()
         text = event.message.text
         var match = text.match(/\d+/)
         if (match) {
+          sendTextMessage(sender, "AkashBot suggests: ")
           findFoodWithCaloriesLessThan(match, sender)
           //sendTextMessage(sender, "Text received, echo: " + match)
         }
@@ -54,7 +55,6 @@ var app = express()
       var len = foods.length
       if (len > 10)
         len = 10
-      sendTextMessage(sender, 'AkashBot suggests: ')
       for (var i = 0; i < len; i++) {
         var foodInfo = "\nFood: " + JSON.stringify(foods[i].product_name)
                       + "\nCalories: " + JSON.stringify(foods[i].calories)
