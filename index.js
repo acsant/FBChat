@@ -34,11 +34,11 @@ var app = express()
       sender = event.sender.id
       if (event.message && event.message.text) {
         text = event.message.text
-        if (text == 'Test Generic') {
-          sendGenericMessage(sender)
-          continue
+        var match = text.match(/\d+/)
+        if (match) {
+          sendTextMessage(sender, "Text received, echo: " + text.substring(0, 200))
+      
         }
-        sendTextMessage(sender, "Text received, echo: " + text.substring(0, 200))
       }
     }
     res.sendStatus(200)
