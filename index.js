@@ -54,12 +54,13 @@ var app = express()
       var len = foods.length
       if (len > 10)
         len = 10
+      sendTextMessage(sender, 'AkashBot suggests: ')
       for (var i = 0; i < len; i++) {
         var foodInfo = "\nFood: " + JSON.stringify(foods[i].product_name)
                       + "\nCalories: " + JSON.stringify(foods[i].calories)
                       + "\nType: " + JSON.stringify(foods[i].diet_type);
         console.log('Found results for: ', foodInfo)
-        sendTextMessage(sender, "AkashBot suggests: " + foodInfo)
+        sendTextMessage(sender, foodInfo)
       }
     }, function (err) {
       console.log('Error: ', err)
