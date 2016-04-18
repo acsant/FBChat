@@ -57,7 +57,7 @@ var app = express()
                       + "\nCalories: " + foodObj['calories'] + 
                       + "\nType: " + foodObj['diet_type']
         console.log('Found results for: ', foodObj['product_name'])
-        sendTextMessage(sender, "Akash suggests: " + foodInfo)
+        sendTextMessage(sender, "Akash suggests: " + foodObj)
       }
     }, function (err) {
       console.log('Error: ', err)
