@@ -51,16 +51,13 @@ var app = express()
   // calories endpiint
   function findFoodWithCaloriesLessThan (calories, sender) {
     openapi.foodservicesSearch({}, {'calories.lt': calories}).then(function(foods) {
-      var start = Date.now()
-      var foodsObj = JSON.parse(foods)
-      console.log('Time taken: ', Date.now() - start)
-      for (var food in foodsObj) {
+      //for (var food in foods) {
         /*var foodInfo = "\nFood: " + food.product_name
                       + "\nCalories: " + food['calories'] + 
                       + "\nType: " + food['diet_type']*/
-        console.log('Found results for: ', food)
+        console.log('Found results for: ', foods)
         //sendTextMessage(sender, "Akash suggests: " + foodInfo)
-      }
+      //}
     }, function (err) {
       console.log('Error: ', err)
     })
