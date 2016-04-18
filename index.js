@@ -53,7 +53,7 @@ var app = express()
     openapi.foodservicesSearch({}, {'calories.lt': calories}).then(function(foods) {
       for (var food in foods) {
         var foodObj = JSON.parse(food)
-        var foodInfo = "\nFood: " + foodObj['product_name']
+        var foodInfo = "\nFood: " + foodObj.product_name
                       + "\nCalories: " + foodObj['calories'] + 
                       + "\nType: " + foodObj['diet_type']
         console.log('Found results for: ', foodObj['product_name'])
