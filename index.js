@@ -25,3 +25,40 @@ var app = express()
   app.listen(app.get('port'), function () {
     console.log('running on port', app.get('port'))
   })
+
+  //API Endpoint
+  app.post('/webhook/', function (req, res) {
+    messaging_events = req.body.entry[0].messaging
+    for (i = 0; i < messaging_events.length; i++) {
+      event = req.body.entry[0].messaging[i]
+      sender = event.sender.id
+      if (event.message && event.message.text) {
+        text = text.message.text
+        sendTextMessage(sender, "Text received, echo: " + text.substring(0, 200))
+      }
+    }
+    res.sendStatus(200)
+  })
+
+  var token = "CAACZClHELlZCIBAJZB9gT66Ca9TP6h4BuOWdp4frFeI4sQMJIqqXMNoeMLli2GNXO5GQGKRcFzZB3G9132hHdJgpKLWgX8JjR9O2kcauuHaXd5ncJBKhEtLEnsBOSxl2usYoIyFiRgazKEx3hXEQbfvN7bcSkAea2jycN9RNuX3lLSU96pXqO2X8ZAT2g4mAZD"
+
+  //Echo message function
+  function sendTextMessage (sender, text) {
+    messageData = {
+      text:text
+    }
+    request({
+      url: 'https://graph.facebook.com/v2.6/me/messages'
+      qs: {access_token:token}
+      method: 'POST'
+      json: {
+        recipient: {id: sender},
+        message: messageData,
+      }, function (error, response, body) {
+        if (error) {
+          console.log('Error sending messages: ', error)
+        } else if (response.body.error) {
+          console.log('Error', response.body.error)
+        }
+    })
+  }
