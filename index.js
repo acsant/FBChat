@@ -36,7 +36,7 @@ var app = express()
         text = event.message.text
         var match = text.match(/\d+/)
         if (match) {
-          sendTextMessage(sender, "Text received, echo: " + text.substring(0, 200))
+          sendTextMessage(sender, "Text received, echo: " + match)
       
         }
       }
