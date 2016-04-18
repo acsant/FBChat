@@ -82,10 +82,6 @@ var app = express()
               "type": "web_url",
               "url": "https://www.messenger.com",
               "title": "web url"
-            }, {
-              "type": "postback",
-              "title": "Postback",
-              "payload": "Payload for first element in a generic bubble",
             }],
           }]
         }
