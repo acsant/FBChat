@@ -33,7 +33,7 @@ var app = express()
       event = req.body.entry[0].messaging[i]
       sender = event.sender.id
       if (event.message && event.message.text) {
-        text = text.message.text
+        text = event.message.text
         /*if (text == 'Test Generic') {
           sendGenericMessage(sender)
           continue
