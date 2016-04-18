@@ -45,6 +45,8 @@ var app = express()
         var GT = text.match(matchGT)
         var LT = text.match(matchLT)
         var EQ = text.match(matchEQ)
+        console.log('Oper', LT)
+        console.log('Oper', EQ)
         if (match) {
           sendTextMessage(sender, "AkashBot suggests: ")
           if (EQ) {
